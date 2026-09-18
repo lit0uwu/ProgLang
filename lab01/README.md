@@ -87,7 +87,7 @@ pushq	%rbp
 	movl	$0, -8(%rbp)
 	jmp	.L2
 ```
-* **O1** - уже оптимизация, 
+* **O1** - уже оптимизация
 ```
 subq	$56, %rsp
 	.seh_stackalloc	56
