@@ -62,15 +62,64 @@
 
 ![Скриншот](08.png)
 
-*В отчет вставьте пояснения о стандартах С++ и используемых возможностях языка*.
-
-*Все примеры программ надо сохранить в папке 08*
-
 ### Задание 9 **(3)**
 
 ![Скриншот](09.png)
 
-*Сохраните эти файлы и сравните код для функции main. Он начинается с декларации* **main:**. Сравните, как будет работать код программы
-с разными уровнями оптимизации.*
 
-*В отчет запишите различающиеся фрагменты ассемблерного кода с поясненими.*
+* **O0** - без оптимизации
+```
+pushq	%rbp
+	.seh_pushreg	%rbp
+	movq	%rsp, %rbp
+	.seh_setframe	%rbp, 0
+	subq	$48, %rsp
+	.seh_stackalloc	48
+	.seh_endprologue
+	call	__main
+	movl	$0, -4(%rbp)
+	leaq	-12(%rbp), %rax
+	movq	.refptr._ZSt3cin(%rip), %rcx
+	movq	%rax, %rdx
+	call	_ZNSirsERi
+	movl	$0, -8(%rbp)
+	jmp	.L2
+```
+* **O1** - уже оптимизация, 
+```
+subq	$56, %rsp
+	.seh_stackalloc	56
+	.seh_endprologue
+	call	__main
+	leaq	44(%rsp), %rdx
+	movq	.refptr._ZSt3cin(%rip), %rcx
+	call	_ZNSirsERi
+	movl	44(%rsp), %edx
+	movl	$123, %eax
+	.p2align 3
+```
+* **O2** - еще больше оптимизация
+```
+subq	$56, %rsp
+	.seh_stackalloc	56
+	.seh_endprologue
+	call	__main
+	movq	.refptr._ZSt3cin(%rip), %rcx
+	leaq	44(%rsp), %rdx
+	call	_ZNSirsERi
+	movq	.refptr._ZSt4cout(%rip), %rcx
+	imull	$123, 44(%rsp), %edx
+	call	_ZNSolsEi
+	xorl	%eax, %eax
+	addq	$56, %rsp
+	ret
+	.seh_endproc
+	.def	__main;	.scl	2;	.type	32;	.endef
+	.ident	"GCC: (x86_64-posix-seh-rev0, Built by MinGW-Builds project) 16.1.0"
+	.def	_ZNSirsERi;	.scl	2;	.type	32;	.endef
+	.def	_ZNSolsEi;	.scl	2;	.type	32;	.endef
+	.section	.rdata$.refptr._ZSt4cout, "dr"
+	.p2align	3, 0
+	.globl	.refptr._ZSt4cout
+	.linkonce	discard
+```
