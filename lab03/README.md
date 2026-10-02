@@ -34,7 +34,7 @@
 
 *Преобразования при присваивании*
 
-<https://www.c-cpp.ru/books/preobrazovanie-tipov-pri-prisvaivanii>
+*Источник: <https://www.c-cpp.ru/books/preobrazovanie-tipov-pri-prisvaivanii>
 
 *Преобразования при арифметических действиях*
 
