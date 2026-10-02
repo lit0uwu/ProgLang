@@ -94,6 +94,12 @@ std::cout << typeid(b).name() << std::endl;
 
 *Записанную программу сохраните в папке с номером задания.*
 
+![Скриншот](02/Screenshot_20261002_125254.jpg)
+Источник: <https://ru.cppreference.com/cpp/language/operator_arithmetic>
+
+![Скриншот](02/Screenshot_20261002_125114.jpg)
+Источник: <https://ru.cppreference.com/cpp/language/operator_logical>
+
 ![Скриншот](04/ex1sc.png)
 ![Скриншот](04/ex1.png)
 
