@@ -67,7 +67,7 @@ std::cout << a;
 ![ASCII](image.png)
 - Источник картинки: http://mojainformatika.ru/paskal/dopolnitelnyj-material-po-pascal/43-kodovaya-tablicza-ascii.html
 
-- "`a`" по таблице ASCII имеет код 97.
+- "`a`" по таблице ASCII имеет код 97
 - 97 + 10 = 107, это символ "`k`"
 - 107 + 250 = 357, в char (у char 8 бит, 2 в 8 степени = 256 значений) это не помещается, переполнение 357 - 256 = 101 (101 = "`e`")
 
